@@ -11,7 +11,6 @@ const Search = () => {
         <div className="userChatInfo">
           <span>Jane</span>
         </div>
-
       </div> 
     </div>
   )
