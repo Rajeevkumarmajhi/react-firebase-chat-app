@@ -33,7 +33,7 @@ const Search = () => {
 
   const handleSelect = async (e) => {
     // check if conversations (chats in firestore) exists or not , if not create one
-    const combinedId = currentUser.uid >user.id ? currentUser.uid + user.uid : user.uid + currentUser.uid
+    const combinedId = currentUser.uid >user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid
     
     try{
       const res = await getDoc(doc(db,'chats', combinedId))
