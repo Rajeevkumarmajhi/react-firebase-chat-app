@@ -47,7 +47,7 @@ const Input = () => {
 
       await updateDoc(doc(db,"chats",data.chatId),{
         messages: arrayUnion({
-          id: uuid,
+          id: uuid(),
           text,
           senderId: currentUser.uid,
           date: Timestamp.now()
