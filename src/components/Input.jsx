@@ -4,21 +4,18 @@ import Attach from "../img/attach.png";
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
+import { db, storage } from '../firebase';
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { db, storage } from '../firebase';
 
 const Input = () => {
-
   const [text, setText] = useState("");
-  
   const [img, setImg] = useState(null);
 
   const {currentUser} = useContext(AuthContext)
   const {data} = useContext(ChatContext)
 
   const handleSend = async () => {
-
     if(img){
 
       const storageRef = ref(storage, uuid());
@@ -36,12 +33,11 @@ const Input = () => {
               messages: arrayUnion({
                 id: uuid(),
                 text,
-                senderId:currentUser.uid,
-                date:Timestamp.now(),
+                senderId: currentUser.uid,
+                date: Timestamp.now(),
                 img:downloadURL,
-      
-              })
-            })
+              }),
+            });
 
           });
         }
@@ -53,11 +49,10 @@ const Input = () => {
         messages: arrayUnion({
           id: uuid,
           text,
-          senderId:currentUser.uid,
-          date:Timestamp.now()
-        })
+          senderId: currentUser.uid,
+          date: Timestamp.now()
+        }),
       });
-      console.log(uuid,text,currentUser.uid,Timestamp.now());
 
     }
 
